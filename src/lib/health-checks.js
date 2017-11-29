@@ -1,6 +1,16 @@
 const checkFailing = require('./check-failing');
 const errorRateCheck = require('./error-rate-check');
 
+const severityMap = {
+	'red': 1,
+	'1': 1,
+	'amber': 2,
+	'yellow': 2,
+	'2': 2,
+	'green': 3,
+	'3': 3
+};
+
 module.exports = (app, options, meta) => {
 	const defaultAppName = `Next FT.com ${meta.name} in ${process.env.REGION || 'unknown region'}`;
 
@@ -26,6 +36,7 @@ module.exports = (app, options, meta) => {
 		}
 		if (req.params[0]) {
 			checks.forEach(check => {
+				check.severity = severityMap[check.severity]
 				if (check.severity <= Number(req.params[0]) && check.ok === false) {
 					res.status(500);
 				}
