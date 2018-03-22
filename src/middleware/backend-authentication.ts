@@ -1,5 +1,7 @@
 import * as express from 'express';
-import {NextApplication} from '../next-application';
+import {
+	NextApplication
+} from '../types';
 
 const nLogger = require('@financial-times/n-logger').default;
 const metrics = require('next-metrics');

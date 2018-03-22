@@ -12,9 +12,9 @@ import serviceMetrics from './lib/service-metrics';
 const raven = require('@financial-times/n-raven');
 
 // utils
-import healthChecks from './lib/health-checks';
-import instrumentListen from './lib/instrument-listen';
-import guessAppDetails from './lib/guess-app-details';
+import healthChecks = require('./lib/health-checks');
+import instrumentListen = require('./lib/instrument-listen');
+import guessAppDetails = require('./lib/guess-app-details');
 
 import cache = require('./middleware/cache');
 import robots = require('./middleware/robots');
@@ -24,12 +24,9 @@ import logVary = require('./middleware/log-vary');
 import anon = require('./middleware/anon');
 
 import {
+  NextApplication,
   Settings
-} from './settings';
-
-import {
-  NextApplication
-} from './next-application';
+} from './types';
 
 const teapot = fs.readFileSync(path.join(__dirname, '../assets/teapot.ascii'), 'utf8');
 
@@ -53,6 +50,8 @@ const getAppContainer = (options: Settings) => {
 
 	const app = instrumentListen(express(), meta, initPromises);
 	const addInitPromise = initPromises.push.bind(initPromises);
+
+  app.listen
 
 	// must be the first middleware
 	app.use(raven.requestHandler());

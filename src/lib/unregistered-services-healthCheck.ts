@@ -1,4 +1,6 @@
-import {HealthCheckStatus} from './health-checks'
+import {
+	HealthCheckStatus
+} from '../types'
 
 let lastCheckOk = true;
 let lastCheckOutput = 'All services\' metrics are set up in Next-metrics';

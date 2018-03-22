@@ -1,6 +1,11 @@
 import * as express from 'express';
-import {Settings, Meta} from '../settings';
-import {NextApplication} from '../next-application';
+
+import {
+	Settings,
+	Meta,
+	NextApplication,
+	SentryResponse
+} from '../types';
 
 const raven = require('@financial-times/n-raven');
 const metrics = require('next-metrics');
@@ -12,11 +17,7 @@ import * as https from 'https';
 import * as path from 'path';
 import * as fs from 'fs';
 
-interface SentryResponse extends express.Response {
-	sentry: string
-}
-
-export default (app: express.Application, meta: Meta, initPromises: Array<Promise<any>>): NextApplication => {
+export = (app: express.Application, meta: Meta, initPromises: Array<Promise<any>>): NextApplication => {
 	const actualAppListen = function (app: express.Application, ...args: any[]) {
 		let serverPromise: Promise<https.Server | http.Server>;
 		if (process.argv.indexOf('--https') > -1) {

@@ -1,16 +1,14 @@
 const nHealth = require('n-health');
 
+import {
+	ErrorRateCheckOptions
+} from '../types'
+
 const DEFAULT_SEVERITY = 3;
 const DEFAULT_SAMPLE_PERIOD = '10min';
 const DEFAULT_THRESHOLD = 4;
 
-interface Options {
-	severity?: number,
-	samplePeriod?: string,
-	threshold?: number
-}
-
-export = (appName: string, opts?: Options) => {
+export = (appName: string, opts?: ErrorRateCheckOptions) => {
 	opts = opts || {};
 	const severity = opts.severity || DEFAULT_SEVERITY;
 	const threshold = opts.threshold || DEFAULT_THRESHOLD;

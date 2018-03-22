@@ -1,4 +1,8 @@
-import {Settings, Meta} from '../settings'
+import {
+	Settings,
+	Meta
+} from '../types'
+
 import normalizeName = require('./normalize-name');
 
 interface PackageJson {
@@ -6,7 +10,7 @@ interface PackageJson {
 	description: string
 }
 
-export default (options: Settings): Meta => {
+export = (options: Settings): Meta => {
 	let name = options.name;
 	let description = '';
 	let directory = options.directory || process.cwd();

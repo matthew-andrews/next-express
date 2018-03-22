@@ -1,25 +1,14 @@
 import * as express from 'express';
 import errorRateCheck = require('./error-rate-check');
 import * as unRegisteredServicesHealthCheck from './unregistered-services-healthCheck';
-import {Settings, Meta} from '../settings';
-import {NextApplication} from '../next-application';
 
-export interface HealthCheckStatus {
-	severity: number
-	ok: boolean
-	name: string
-	checkOutput: string
-	lastUpdated?: Date
-	panicGuide: string
-	businessImpact: string
-	technicalSummary: string
-}
+import {
+	NextApplication,
+	Settings,
+	Meta
+} from '../types';
 
-export interface HealthCheck {
-	getStatus(): HealthCheckStatus
-}
-
-export default (app: NextApplication, options: Settings, meta: Meta) => {
+export = (app: NextApplication, options: Settings, meta: Meta) => {
 	const defaultAppName =
 		`Next FT.com ${meta.name} in ${process.env.REGION || 'unknown region'}`;
 
