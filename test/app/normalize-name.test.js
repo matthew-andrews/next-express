@@ -1,5 +1,5 @@
 /*global it, describe*/
-const normalize = require('../../src/lib/normalize-name');
+const normalize = require('../../dist/lib/normalize-name');
 const assert = require('assert');
 
 describe('normalize', function () {

@@ -1,17 +1,23 @@
 const metrics = require('next-metrics');
-const unRegisteredServicesHealthCheck = require('./unregistered-services-healthCheck');
-let unregisteredServices = {};
+import * as unRegisteredServicesHealthCheck from './unregistered-services-healthCheck';
 
-module.exports = {
+interface UnregisteredServices {
+	[key: string]: boolean
+}
+
+let unregisteredServices: UnregisteredServices = {};
+
+export default {
 	init: () => {
 		unRegisteredServicesHealthCheck.updateCheck(unregisteredServices);
-		setInterval(() => {
+
+		global.setInterval(() => {
 			unRegisteredServicesHealthCheck.updateCheck(unregisteredServices);
 			unregisteredServices = {};
 		}, 1 * 60 * 1000);
 
 		metrics.fetch.instrument({
-			onUninstrumented: function (url) {
+			onUninstrumented: function (url?: string) {
 				if (typeof url === 'string') {
 					unregisteredServices[url.split('?')[0]] = true;
 				}

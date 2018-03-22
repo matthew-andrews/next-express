@@ -9,7 +9,7 @@ const nHealthStub = {
 	runCheck: sinon.stub()
 };
 
-const subject = proxyquire('../../src/lib/error-rate-check', {
+const subject = proxyquire('../../dist/lib/error-rate-check', {
 	'n-health': nHealthStub
 });
 

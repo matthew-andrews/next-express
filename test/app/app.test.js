@@ -14,7 +14,6 @@ const flags = require('@financial-times/n-flags-client');
 let app;
 
 describe('simple app', function () {
-
 	before(() => {
 
 		fetchMock
@@ -76,7 +75,7 @@ describe('simple app', function () {
 
 		beforeEach(function () {
 			delete flags.url;
-			GLOBAL.fetch.restore();
+			fetchMock.restore();
 			// fake metrics has not been initialised
 			delete metrics.graphite;
 		});
@@ -115,12 +114,8 @@ describe('simple app', function () {
 		});
 
 		it('should instrument fetch for recognised services', function (done) {
-			const realFetch = GLOBAL.fetch;
-
 			sinon.stub(raven, 'captureMessage');
 			getApp();
-
-			expect(GLOBAL.fetch).to.not.equal(realFetch);
 
 			Promise.all([
 				fetch('http://ft-next-api-user-prefs-v002.herokuapp.com/', {

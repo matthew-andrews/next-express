@@ -10,13 +10,12 @@ const fetchMock = require('fetch-mock');
 const info = sinon.stub();
 const error = sinon.stub();
 
-const IpWhitelist = proxyquire('../../src/lib/ip-whitelist', {
+const IpWhitelist = proxyquire('../../dist/lib/ip-whitelist', {
 	'@financial-times/n-logger': { default: { info: info, error: error } }
 });
 
 const WHITELISTED_FASTLY_IP_ADDRESS = '104.156.80.5';
 const WHITELISTED_FASTLY_IPV6_ADDRESS = '::ffff:104.156.80.5';
-//const WHITELISTED_FT_IP_ADDRESS = '';
 
 describe('IP whitelist', () => {
 

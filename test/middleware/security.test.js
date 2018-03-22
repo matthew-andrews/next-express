@@ -1,5 +1,5 @@
 /*global it, describe, beforeEach, before, after*/
-const subject = require('../../src/middleware/security');
+const subject = require('../../dist/middleware/security');
 const expect = require('chai').expect;
 
 describe('security middleware', function () {

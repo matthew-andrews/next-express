@@ -43,7 +43,6 @@ describe('simple app', function () {
 				.get('/')
 				.expect('FT-Backend-Authentication', /false/)
 				.end((err, res) => {
-					// console.log(res);
 					expect(res.status).to.equal(401);
 					expect(res.text).to.equal('Invalid Backend Key');
 					done();
