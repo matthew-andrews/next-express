@@ -1,6 +1,8 @@
 module.exports = {
 	files: {
 		allow: [
+			'assets/robots.txt',
+			'assets/teapot.ascii',
 			'cert.pem',
 			'key.pem'
 		],
