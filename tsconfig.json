@@ -3,7 +3,8 @@
     "module": "CommonJS",
     "strict": true,
     "target": "es2017",
-    "outDir": "dist"
+    "outDir": "dist",
+    "declaration": true
   },
   "include": [
     "src/**/*"

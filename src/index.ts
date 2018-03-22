@@ -24,8 +24,8 @@ import logVary = require('./middleware/log-vary');
 import anon = require('./middleware/anon');
 
 import {
-  NextApplication,
-  Settings
+	NextApplication,
+	Settings
 } from './types';
 
 const teapot = fs.readFileSync(path.join(__dirname, '../assets/teapot.ascii'), 'utf8');
@@ -51,7 +51,7 @@ const getAppContainer = (options: Settings) => {
 	const app = instrumentListen(express(), meta, initPromises);
 	const addInitPromise = initPromises.push.bind(initPromises);
 
-  app.listen
+	app.listen
 
 	// must be the first middleware
 	app.use(raven.requestHandler());
